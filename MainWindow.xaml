@@ -1,0 +1,144 @@
+﻿<Window x:Class="MusicPlayer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MusicPlayer"
+        
+        mc:Ignorable="d"
+        Title="MainWindow" Height="475" Width="800">
+
+    <Grid>
+
+        <Grid.Background>
+            <ImageBrush ImageSource="/chainsaw.jpg"/>
+        </Grid.Background>
+        <Label x:Name="Timer" Content="Label" HorizontalAlignment="Left" Margin="44,68,0,0" VerticalAlignment="Top" Width="94" Height="39"/>
+
+        <Slider x:Name="SliderSong" HorizontalAlignment="Left" Margin="26,155,0,0" VerticalAlignment="Top" Width="356" Height="22" IsSelectionRangeEnabled="True"  Maximum="100" ValueChanged="SliderSong_ValueChanged">
+            <Slider.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Red" />
+
+            </Slider.Resources>
+        </Slider>
+        <Button Width="50" Height="50" x:Name="ButtonPrev" Content="Prev" HorizontalAlignment="Left" Margin="44,182,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe Print" FontWeight="Bold" Click="ButtonPrev_Click">
+            <Button.Background>
+                <SolidColorBrush Color="#FFDDDDDD"/>
+            </Button.Background>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Ellipse Name="Prev">
+                            <Ellipse.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF1FC7C3" Offset="0.2"/>
+                                    <GradientStop Color="#FFBBED19" Offset="0.7"/>
+                                </LinearGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           Content="{TemplateBinding Content}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button  Width="75" Height="74" x:Name="ButtonPlay" Content="Play" HorizontalAlignment="Left" Margin="100,170,0,0" VerticalAlignment="Top" FontFamily="Segoe Print" FontSize="24" FontWeight="Bold"  Click="ButtonPlay_Click">
+
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Ellipse>
+                            <Ellipse.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF19ED1C" Offset="0.2"/>
+                                    <GradientStop Color="#FFC71F1F" Offset="0.7"/>
+                                    <GradientStop Color="#FF1FB4C7" Offset="0.3"/>
+                                </LinearGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           Content="{TemplateBinding Content}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Width="56" Height="55" x:Name="ButtonPause" Content="Pause" HorizontalAlignment="Left" Margin="236,182,0,0" VerticalAlignment="Top" FontFamily="Segoe Print" FontSize="18" FontWeight="Bold" Click="ButtonPause_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Ellipse>
+                            <Ellipse.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFBBED19" Offset="0.2"/>
+                                    <GradientStop Color="#FF1FC7C3" Offset="0.7"/>
+
+                                </LinearGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           Content="{TemplateBinding Content}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Width="50" Height="50" x:Name="ButtonStop" Content="Stop" HorizontalAlignment="Left" Margin="297,187,0,0" VerticalAlignment="Top" FontFamily="Segoe Print" FontSize="18" FontWeight="Bold" Click="ButtonStop_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Ellipse>
+                            <Ellipse.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFED4A19" Offset="0.2"/>
+                                    <GradientStop Color="#FFC79A1F" Offset="0.7"/>
+
+                                </LinearGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           Content="{TemplateBinding Content}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Width="50" Height="50" x:Name="ButtonNext" Content="Next" HorizontalAlignment="Left" Margin="180,183,0,0" VerticalAlignment="Top" FontFamily="Segoe Print" FontSize="18" FontWeight="Bold" Click="ButtonNext_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Ellipse>
+                            <Ellipse.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFED4A19" Offset="0.2"/>
+                                    <GradientStop Color="#FFC79A1F" Offset="0.7"/>
+
+                                </LinearGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           Content="{TemplateBinding Content}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Slider x:Name="SliderVolume" HorizontalAlignment="Left" Margin="204,132,0,0" VerticalAlignment="Top" Width="120"  IsSelectionRangeEnabled="True"  Maximum="100" ValueChanged="SliderVolume_ValueChanged">
+            <Slider.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                 Color="Red" Opacity="0.5" >
+                </SolidColorBrush>
+            </Slider.Resources>
+        </Slider>
+        <Label x:Name="LabelNameSong" Content="Label" HorizontalAlignment="Left" Margin="36,37,0,0" VerticalAlignment="Top" Width="336"/>
+        <Button Width="140" Height="65" x:Name="ButtonAddSong" Content="Add" HorizontalAlignment="Left" Margin="26,332,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" Click="ButtonAddSong_Click"/>
+        <Button Width="140" Height="65" x:Name="ButtonDelSong" Content="Del" HorizontalAlignment="Left" Margin="196,332,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" Click="ButtonDelSong_Click"/>
+        <Label Content="AnimeAmp by Eon" FontFamily="Impact" FontSize="36" Margin="518,379,0,5">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE82F12"/>
+                    <GradientStop Color="#FF13290C" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+        <MediaElement x:Name="Playerr" HorizontalAlignment="Left" Height="100" Margin="-153,24,0,0" VerticalAlignment="Top" Width="100" />
+        <ListBox x:Name="BoxTt" d:ItemsSource="{d:SampleData ItemCount=5}" Width="200" Height="200" FontSize="16" FontWeight="Bold" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF130505" Margin="483,68,117,191"/>
+
+    </Grid>
+</Window>

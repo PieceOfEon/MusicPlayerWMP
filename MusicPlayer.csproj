@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Anime-фэндомы-makima-%28chainsaw-man%29-Chainsaw-Man-7664765.jpeg" />
+    <None Remove="chainsaw.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Anime-фэндомы-makima-(chainsaw-man)-Chainsaw-Man-7664765.jpeg" />
+    <Resource Include="chainsaw.jpg" />
+  </ItemGroup>
+
+</Project>
