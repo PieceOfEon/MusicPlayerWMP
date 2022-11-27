@@ -15,6 +15,12 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
+using System.Windows.Threading;
+using System.Reflection;
+using FilePath = System.IO.Path;
+using System.Threading;
+using System.Diagnostics;
 
 namespace MusicPlayer
 {
@@ -23,16 +29,57 @@ namespace MusicPlayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        public string a;
+        
+        DispatcherTimer timer = new DispatcherTimer();
+        int frame = 1;
+        
         public MainWindow()
         {
             InitializeComponent();
             Playerr.Volume = 0.1;
             SliderVolume.Value = 10;
+            timer.Tick += new EventHandler(Update);
+            timer.Interval = TimeSpan.FromMilliseconds(200);
+            
+
+            Playerr.MediaEnded += ButtonNext_Click;
+
+             
+
+            
+
         }
 
-     
+        public void Update(object sender, EventArgs e)
+        {
+            if(Playerr.Position.TotalMilliseconds>100)
+            {
+                try
+                {
+                    SliderSong.Maximum = Playerr.NaturalDuration.TimeSpan.TotalSeconds;
+                    tomer.Content=Playerr.Position.ToString(@"mm\:ss");
 
+                }
+                catch (Exception q) { MessageBox.Show(q.Message); }
+            }
+            SliderSong.Value = Playerr.Position.TotalSeconds;
+            Img.X= 120+frame*90;
+            Img.Y = 200;
+            if (frame < 7)
+            {
+                frame++;
+            }
+            else
+            {
+                frame = 1;
+            }
+            if(Playerr.Source==null)
+            {
+                timer.Stop();
+            }
+        }
+
+      
         private void SliderSong_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             SliderSong.SelectionEnd = Convert.ToInt32(e.NewValue);
@@ -55,6 +102,7 @@ namespace MusicPlayer
             //a = openFileDialog1.SafeFileName+"\n";
             //MessageBox.Show(a);
             BoxTt.Items.Add(openFileDialog1.FileName);
+            
 
         }
 
@@ -64,8 +112,11 @@ namespace MusicPlayer
             if(BoxTt.SelectedIndex!=-1)
             {
                 Playerr.Source = new Uri(BoxTt.SelectedItem.ToString());
+                timer.Start();
+                
             }
-         
+            
+
         }
 
         private void TexBoxPlaylist_TextChanged(object sender, TextChangedEventArgs e)
@@ -75,6 +126,14 @@ namespace MusicPlayer
 
         private void ButtonPause_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                SliderSong.Maximum = Playerr.NaturalDuration.TimeSpan.TotalSeconds;
+                MessageBox.Show(Playerr.NaturalDuration.TimeSpan.TotalSeconds.ToString()); 
+                
+            }
+            catch (Exception q ) { MessageBox.Show(q.Message); }
+            
             //if (Playerr.CanPause)
             //    Playerr.Pause();
         }

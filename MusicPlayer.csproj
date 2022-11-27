@@ -10,11 +10,13 @@
   <ItemGroup>
     <None Remove="Anime-фэндомы-makima-%28chainsaw-man%29-Chainsaw-Man-7664765.jpeg" />
     <None Remove="chainsaw.jpg" />
+    <None Remove="sile.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Anime-фэндомы-makima-(chainsaw-man)-Chainsaw-Man-7664765.jpeg" />
     <Resource Include="chainsaw.jpg" />
+    <Resource Include="sile.png" />
   </ItemGroup>
 
 </Project>

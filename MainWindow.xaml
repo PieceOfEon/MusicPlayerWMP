@@ -13,9 +13,9 @@
         <Grid.Background>
             <ImageBrush ImageSource="/chainsaw.jpg"/>
         </Grid.Background>
-        <Label x:Name="Timer" Content="Label" HorizontalAlignment="Left" Margin="44,68,0,0" VerticalAlignment="Top" Width="94" Height="39"/>
+        <Label x:Name="tomer" Content="00:00" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="44,63,0,0" VerticalAlignment="Top" Width="79" Height="29" Background="#A5190404" Foreground="#FFF9F4F4" FontSize="20" FontFamily="Impact" Padding="0,0,0,0" />
 
-        <Slider x:Name="SliderSong" HorizontalAlignment="Left" Margin="26,155,0,0" VerticalAlignment="Top" Width="356" Height="22" IsSelectionRangeEnabled="True"  Maximum="100" ValueChanged="SliderSong_ValueChanged">
+        <Slider x:Name="SliderSong" HorizontalAlignment="Left" Margin="26,148,0,0" VerticalAlignment="Top" Width="356" Height="22" IsSelectionRangeEnabled="True"  Maximum="100" ValueChanged="SliderSong_ValueChanged">
             <Slider.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Red" />
 
@@ -119,7 +119,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Slider x:Name="SliderVolume" HorizontalAlignment="Left" Margin="204,132,0,0" VerticalAlignment="Top" Width="120"  IsSelectionRangeEnabled="True"  Maximum="100" ValueChanged="SliderVolume_ValueChanged">
+        <Slider x:Name="SliderVolume" HorizontalAlignment="Left" Margin="205,125,0,0" VerticalAlignment="Top" Width="120"  IsSelectionRangeEnabled="True"  Maximum="100" ValueChanged="SliderVolume_ValueChanged">
             <Slider.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
                                  Color="Red" Opacity="0.5" >
@@ -129,7 +129,7 @@
         <Label x:Name="LabelNameSong" Content="Label" HorizontalAlignment="Left" Margin="36,37,0,0" VerticalAlignment="Top" Width="336"/>
         <Button Width="140" Height="65" x:Name="ButtonAddSong" Content="Add" HorizontalAlignment="Left" Margin="26,332,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" Click="ButtonAddSong_Click"/>
         <Button Width="140" Height="65" x:Name="ButtonDelSong" Content="Del" HorizontalAlignment="Left" Margin="196,332,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" Click="ButtonDelSong_Click"/>
-        <Label Content="AnimeAmp by Eon" FontFamily="Impact" FontSize="36" Margin="518,379,0,5">
+        <Label Content="AnimeAmp by Eon" FontFamily="Impact" FontSize="36" Margin="418,384,100,0">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFE82F12"/>
@@ -137,8 +137,19 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-        <MediaElement x:Name="Playerr" HorizontalAlignment="Left" Height="100" Margin="-153,24,0,0" VerticalAlignment="Top" Width="100" />
-        <ListBox x:Name="BoxTt" d:ItemsSource="{d:SampleData ItemCount=5}" Width="200" Height="200" FontSize="16" FontWeight="Bold" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF130505" Margin="483,68,117,191"/>
+        <MediaElement x:Name="Playerr" HorizontalAlignment="Left" Height="100" Margin="-154,24,0,0" VerticalAlignment="Top" Width="100" />
+        <ListBox x:Name="BoxTt" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="16" FontWeight="Bold" BorderBrush="{x:Null}" Background="#7F000000" Foreground="#FFD8D8D8" Margin="469,34,100,95"/>
+        <Rectangle HorizontalAlignment="Left" Height="370" Stroke="Black" VerticalAlignment="Top" Width="1112" Margin="700,212,0,0" StrokeThickness="0">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/sile.png" Stretch="None" AlignmentX="Left" AlignmentY="Top" TileMode="Tile">
+                    <ImageBrush.Transform>
+                        <TranslateTransform x:Name="Img" X="-70" Y="220"/>
+                    </ImageBrush.Transform>
+                </ImageBrush>
+
+            </Rectangle.Fill>
+        </Rectangle>
+
 
     </Grid>
 </Window>
