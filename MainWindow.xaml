@@ -164,7 +164,7 @@
 
         <Button Width="140" Height="65" x:Name="ButtonAddSong" Content="Add" HorizontalAlignment="Left" Margin="26,332,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" Click="ButtonAddSong_Click"/>
         <Button Width="140" Height="65" x:Name="ButtonDelSong" Content="Del" HorizontalAlignment="Left" Margin="196,332,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" Click="ButtonDelSong_Click"/>
-        <Label Content="AnimeAmp by Eon" FontFamily="Impact" FontSize="36" Margin="429,369,89,15">
+        <Label Content="AnimeAmp by Eon" FontFamily="Impact" FontSize="36" Margin="418,369,100,15">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF1F0D08" Offset="0.7"/>

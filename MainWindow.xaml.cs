@@ -59,6 +59,7 @@ namespace MusicPlayer
                 try
                 {
                     SliderSong.Maximum = Playerr.NaturalDuration.TimeSpan.TotalSeconds;
+                    
                     tomer.Content=Playerr.Position.ToString(@"mm\:ss");
 
                 }
@@ -92,7 +93,8 @@ namespace MusicPlayer
         private void SliderSong_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             SliderSong.SelectionEnd = Convert.ToInt32(e.NewValue);
-          
+            Playerr.Position = TimeSpan.FromSeconds(SliderSong.Value);
+
         }
 
         private void SliderVolume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -105,25 +107,32 @@ namespace MusicPlayer
 
         private void ButtonAddSong_Click(object sender, RoutedEventArgs e)
         {
+           
+            OpenFileDialog openFileDialog2 = new OpenFileDialog();
             
-            openFileDialog1.Filter = "mp3 files (*.mp3)|*.mp3";
-            openFileDialog1.Multiselect = true;
-            openFileDialog1.ShowDialog();
-            
-            MessageBox.Show(openFileDialog1.SafeFileName);
-            if (openFileDialog1.FileName=="")
+            openFileDialog2.Filter = "mp3 files (*.mp3)|*.mp3";
+            openFileDialog2.Multiselect = true;
+            openFileDialog2.ShowDialog();
+            if (openFileDialog2.FileNames.Length>0)
             {
-                return;
-            }
-            else
-            {
+                //openFileDialog1 = openFileDialog2;
+                MessageBox.Show("Uspeh");
+
+                openFileDialog1 = openFileDialog2;
+                BoxTt.Items.Clear();
                 for (int i = 0; i < openFileDialog1.FileNames.Length; i++)
                 {
                     BoxTt.Items.Add(openFileDialog1.SafeFileNames[i]);
                 }
-                
-                
             }
+            else
+            {
+                return;
+            }
+           
+            MessageBox.Show(openFileDialog1.SafeFileName);
+            
+           
         }
 
        
