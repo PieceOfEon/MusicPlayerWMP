@@ -13,15 +13,15 @@
         <Grid.Background>
             <ImageBrush ImageSource="/chainsaw.jpg"/>
         </Grid.Background>
-        <Label x:Name="tomer" Content="00:00" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="44,63,0,0" VerticalAlignment="Top" Width="79" Height="29" Background="#A5190404" Foreground="#FFF9F4F4" FontSize="20" FontFamily="Impact" Padding="0,0,0,0" />
+        <Label x:Name="tomer" Content="00:00" Margin="26,145,0,0" VerticalAlignment="Top" Width="80" Height="29" Background="#A5190404" Foreground="#FFF9F4F4" FontSize="20" FontFamily="Impact" Padding="0,2,0,0" HorizontalContentAlignment="Center" HorizontalAlignment="Left" />
 
-        <Slider x:Name="SliderSong" HorizontalAlignment="Left" Margin="26,148,0,0" VerticalAlignment="Top" Width="356" Height="22" IsSelectionRangeEnabled="True"  Maximum="100" ValueChanged="SliderSong_ValueChanged">
+        <Slider x:Name="SliderSong" HorizontalAlignment="Left" Margin="26,188,0,0" VerticalAlignment="Top" Width="356" Height="22" IsSelectionRangeEnabled="True"  Maximum="100" ValueChanged="SliderSong_ValueChanged">
             <Slider.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Red" />
 
             </Slider.Resources>
         </Slider>
-        <Button Width="50" Height="50" x:Name="ButtonPrev" Content="Prev" HorizontalAlignment="Left" Margin="44,182,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe Print" FontWeight="Bold" Click="ButtonPrev_Click">
+        <Button Width="50" Height="50" x:Name="ButtonPrev" Content="Prev" HorizontalAlignment="Left" Margin="43,237,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe Print" FontWeight="Bold" Click="ButtonPrev_Click">
             <Button.Background>
                 <SolidColorBrush Color="#FFDDDDDD"/>
             </Button.Background>
@@ -42,7 +42,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button  Width="75" Height="74" x:Name="ButtonPlay" Content="Play" HorizontalAlignment="Left" Margin="100,170,0,0" VerticalAlignment="Top" FontFamily="Segoe Print" FontSize="24" FontWeight="Bold"  Click="ButtonPlay_Click">
+        <Button  Width="75" Height="74" x:Name="ButtonPlay" Content="Play" HorizontalAlignment="Left" Margin="99,225,0,0" VerticalAlignment="Top" FontFamily="Segoe Print" FontSize="24" FontWeight="Bold"  Click="ButtonPlay_Click">
 
             <Button.Template>
                 <ControlTemplate TargetType="Button">
@@ -62,7 +62,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Width="56" Height="55" x:Name="ButtonPause" Content="Pause" HorizontalAlignment="Left" Margin="236,182,0,0" VerticalAlignment="Top" FontFamily="Segoe Print" FontSize="18" FontWeight="Bold" Click="ButtonPause_Click">
+        <Button Width="56" Height="55" x:Name="ButtonPause" Content="Pause" HorizontalAlignment="Left" Margin="235,237,0,0" VerticalAlignment="Top" FontFamily="Segoe Print" FontSize="18" FontWeight="Bold" Click="ButtonPause_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Grid>
@@ -81,7 +81,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Width="50" Height="50" x:Name="ButtonStop" Content="Stop" HorizontalAlignment="Left" Margin="297,187,0,0" VerticalAlignment="Top" FontFamily="Segoe Print" FontSize="18" FontWeight="Bold" Click="ButtonStop_Click">
+        <Button Width="50" Height="50" x:Name="ButtonStop" Content="Stop" HorizontalAlignment="Left" Margin="296,242,0,0" VerticalAlignment="Top" FontFamily="Segoe Print" FontSize="18" FontWeight="Bold" Click="ButtonStop_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Grid>
@@ -100,7 +100,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Width="50" Height="50" x:Name="ButtonNext" Content="Next" HorizontalAlignment="Left" Margin="180,183,0,0" VerticalAlignment="Top" FontFamily="Segoe Print" FontSize="18" FontWeight="Bold" Click="ButtonNext_Click">
+        <Button Width="50" Height="50" x:Name="ButtonNext" Content="Next" HorizontalAlignment="Left" Margin="179,238,0,0" VerticalAlignment="Top" FontFamily="Segoe Print" FontSize="18" FontWeight="Bold" Click="ButtonNext_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Grid>
@@ -119,26 +119,61 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Slider x:Name="SliderVolume" HorizontalAlignment="Left" Margin="205,125,0,0" VerticalAlignment="Top" Width="120"  IsSelectionRangeEnabled="True"  Maximum="100" ValueChanged="SliderVolume_ValueChanged">
+        <Slider x:Name="SliderVolume" HorizontalAlignment="Left" Margin="146,165,0,0" VerticalAlignment="Top" Width="120"  IsSelectionRangeEnabled="True"  Maximum="100" ValueChanged="SliderVolume_ValueChanged" MouseWheel="SliderVolume_MouseWheel">
             <Slider.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
                                  Color="Red" Opacity="0.5" >
                 </SolidColorBrush>
             </Slider.Resources>
         </Slider>
-        <Label x:Name="LabelNameSong" Content="Label" HorizontalAlignment="Left" Margin="36,27,0,0" VerticalAlignment="Top" Width="336" Background="#7FFFFFFF" Foreground="#FF2D1921" FontSize="16" FontFamily="Times New Roman" FontStyle="Italic" FontWeight="Bold"/>
+        <Canvas x:Name="Canvas" Background="Transparent" Height="25"
+                VerticalAlignment="Top">
+            <Label x:Name="LabelNameSong" Content="Место для Вашей рекламы" HorizontalAlignment="Center" VerticalAlignment="Top" Width="210" Background="#7FFFFFFF" Foreground="#FF2D1921" FontSize="16" FontFamily="Times New Roman" FontStyle="Italic" FontWeight="Bold" Canvas.Left="37" Canvas.Top="5">
+                <Label.Triggers>
+                    <EventTrigger RoutedEvent="Label.Loaded">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" From="800" To="-400" 
+                                                     Duration="0:0:15" RepeatBehavior="Forever" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Label.Triggers>
+            </Label>
+        </Canvas>
+        <!--<Canvas x:Name="Canvas" Background="Transparent" Height="25"
+                VerticalAlignment="Top">
+            <TextBlock Margin="0,7,0,0" VerticalAlignment="Bottom" FontSize="15"  FontWeight="Bold" Foreground="#555"
+                       Text="Тестовый текст" Canvas.Right="0">
+                <TextBlock.Triggers>
+                    <EventTrigger RoutedEvent="TextBlock.Loaded">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" From="1300" To="-750" 
+                                                     Duration="0:0:15" RepeatBehavior="Forever"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </TextBlock.Triggers>
+            </TextBlock>
+        </Canvas>-->
+
         <Button Width="140" Height="65" x:Name="ButtonAddSong" Content="Add" HorizontalAlignment="Left" Margin="26,332,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" Click="ButtonAddSong_Click"/>
         <Button Width="140" Height="65" x:Name="ButtonDelSong" Content="Del" HorizontalAlignment="Left" Margin="196,332,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" Click="ButtonDelSong_Click"/>
-        <Label Content="AnimeAmp by Eon" FontFamily="Impact" FontSize="36" Margin="418,384,100,0">
+        <Label Content="AnimeAmp by Eon" FontFamily="Impact" FontSize="36" Margin="429,369,89,15">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFE82F12"/>
-                    <GradientStop Color="#FF13290C" Offset="1"/>
+                    <GradientStop Color="#FF1F0D08" Offset="0.7"/>
+                    <GradientStop Color="#FFDA2626" Offset="0.4"/>
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
         <MediaElement x:Name="Playerr" HorizontalAlignment="Left" Height="100" Margin="-154,24,0,0" VerticalAlignment="Top" Width="100" />
-        <ListBox x:Name="BoxTt" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="16" FontWeight="Bold" BorderBrush="{x:Null}" Background="#7F000000" Foreground="#FFD8D8D8" Margin="469,34,100,95"/>
+        <ListBox x:Name="BoxTt" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="16" FontWeight="Bold" BorderBrush="{x:Null}" Background="#7F000000" Foreground="#FFD8D8D8" Margin="418,34,100,95"/>
         <Rectangle HorizontalAlignment="Left" Height="370" Stroke="Black" VerticalAlignment="Top" Width="1112" Margin="700,212,0,0" StrokeThickness="0">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/sile.png" Stretch="None" AlignmentX="Left" AlignmentY="Top" TileMode="Tile">
@@ -149,6 +184,9 @@
 
             </Rectangle.Fill>
         </Rectangle>
+        <Label x:Name="One"  HorizontalAlignment="Left" Margin="43,34,0,0" VerticalAlignment="Top" Width="357" Background="{x:Null}" FontSize="20" Height="37" Foreground="#FFF7F7F7" FontFamily="Malgun Gothic"/>
+
+
 
 
     </Grid>

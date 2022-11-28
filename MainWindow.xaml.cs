@@ -21,6 +21,7 @@ using System.Reflection;
 using FilePath = System.IO.Path;
 using System.Threading;
 using System.Diagnostics;
+using System.Reflection.Emit;
 
 namespace MusicPlayer
 {
@@ -30,31 +31,30 @@ namespace MusicPlayer
     public partial class MainWindow : Window
     {
         
-        public List<string> path = new List<string>();
         DispatcherTimer timer = new DispatcherTimer();
+        DispatcherTimer timer2 = new DispatcherTimer();
         int frame = 1;
-        public string[] mas=new string[2];
         OpenFileDialog openFileDialog1 = new OpenFileDialog();
         public MainWindow()
         {
             InitializeComponent();
+
             Playerr.Volume = 0.1;
             SliderVolume.Value = 10;
             timer.Tick += new EventHandler(Update);
             timer.Interval = TimeSpan.FromMilliseconds(200);
-            
-
+            timer2.Tick += new EventHandler(RunningName);
+            timer2.Interval = TimeSpan.FromMilliseconds(500);
             Playerr.MediaEnded += ButtonNext_Click;
 
-             
-            
-            
+            MouseWheel += SliderVolume_MouseWheel;
 
         }
 
         public void Update(object sender, EventArgs e)
         {
-            if(Playerr.Position.TotalMilliseconds>100)
+            
+            if (Playerr.Position.TotalMilliseconds>100)
             {
                 try
                 {
@@ -81,7 +81,14 @@ namespace MusicPlayer
             }
         }
 
-      
+        public void RunningName(object sender, EventArgs e)
+        {
+            if (One.Content.ToString().Count()>0)
+            {
+                One.Content = One.Content.ToString() + One.Content.ToString()[0];
+                One.Content= One.Content.ToString().Remove(0, 1);
+            }
+        }
         private void SliderSong_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             SliderSong.SelectionEnd = Convert.ToInt32(e.NewValue);
@@ -110,19 +117,26 @@ namespace MusicPlayer
             }
             else
             {
-                //BoxTt.Items.Add(mas[1].);
-                BoxTt.Items.Add(openFileDialog1.SafeFileName);
-                //BoxTt.ItemsSource+ = openFileDialog1.FileName;
+                for (int i = 0; i < openFileDialog1.FileNames.Length; i++)
+                {
+                    BoxTt.Items.Add(openFileDialog1.SafeFileNames[i]);
+                }
+                
+                
             }
         }
 
        
         private void ButtonPlay_Click(object sender, RoutedEventArgs e)
         {
-            if(BoxTt.SelectedIndex!=-1)
+            
+            if (BoxTt.SelectedIndex!=-1)
             {
-                Playerr.Source = new Uri(openFileDialog1.FileName.ToString());
+                Playerr.Source = new Uri(openFileDialog1.FileNames[BoxTt.SelectedIndex].ToString());
                 timer.Start();
+                timer2.Stop();
+                timer2.Start();
+                One.Content = openFileDialog1.SafeFileNames[BoxTt.SelectedIndex];
             }
             
         }
@@ -148,45 +162,110 @@ namespace MusicPlayer
 
         private void ButtonStop_Click(object sender, RoutedEventArgs e)
         {
-                Playerr.Source = null; 
+            Playerr.Source = null;
+            timer2.Stop();
+
         }
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
-            if (BoxTt.SelectedIndex + 1 == BoxTt.Items.Count)
+            timer.Start();
+            if (openFileDialog1.FileName == "")
             {
-                MessageBox.Show("next");
-                Playerr.Source = new Uri(BoxTt.Items[0].ToString());
-                BoxTt.SelectedIndex = 0;
+                return;
             }
-            else if(BoxTt.SelectedIndex + 1< BoxTt.Items.Count)
+            else
             {
-                    Playerr.Source = new Uri(openFileDialog1.FileName[i].ToString());
+                if (BoxTt.SelectedIndex + 1 == BoxTt.Items.Count)
+                {
+                    MessageBox.Show("next");
+                    Playerr.Source = new Uri(openFileDialog1.FileNames[0].ToString());
+                    BoxTt.SelectedIndex = 0;
+                    timer2.Stop();
+                    timer2.Start();
+                    One.Content = openFileDialog1.SafeFileNames[BoxTt.SelectedIndex];
+                }
+                else if (BoxTt.SelectedIndex + 1 < BoxTt.Items.Count)
+                {
+                    Playerr.Source = new Uri(openFileDialog1.FileNames[BoxTt.SelectedIndex + 1].ToString());
                     BoxTt.SelectedIndex = BoxTt.SelectedIndex + 1;
+                    timer2.Stop();
+                    timer2.Start();
+                    One.Content = openFileDialog1.SafeFileNames[BoxTt.SelectedIndex];
+                }
             }
+            
                 
         }
 
         private void ButtonDelSong_Click(object sender, RoutedEventArgs e)
         {
-            BoxTt.Items.Remove(BoxTt.SelectedItem);
-        }
 
+            BoxTt.Items.Remove(openFileDialog1.FileName[1]);
+        }
+        
         private void ButtonPrev_Click(object sender, RoutedEventArgs e)
         {
-
-            if (BoxTt.SelectedIndex - 1 < 0)
+            timer.Start();
+            if (openFileDialog1.FileName == "")
             {
-                MessageBox.Show("prev");
-                Playerr.Source = new Uri(BoxTt.Items[BoxTt.Items.Count - 1].ToString());
-                BoxTt.SelectedIndex = BoxTt.Items.Count - 1;
+                return;
             }
-            else if (BoxTt.SelectedIndex - 1 >= 0)
+            else
             {
-                Playerr.Source = new Uri(BoxTt.Items[BoxTt.SelectedIndex - 1].ToString());
-                BoxTt.SelectedIndex = BoxTt.SelectedIndex - 1;
+                if (BoxTt.SelectedIndex - 1 < 0)
+                {
+                    MessageBox.Show("prev");
+                    Playerr.Source = new Uri(openFileDialog1.FileNames[BoxTt.Items.Count - 1].ToString());
+                    BoxTt.SelectedIndex = BoxTt.Items.Count - 1;
+                    timer2.Stop();
+                    timer2.Start();
+                    One.Content = openFileDialog1.SafeFileNames[BoxTt.SelectedIndex];
+                }
+                else if (BoxTt.SelectedIndex - 1 >= 0)
+                {
+                    Playerr.Source = new Uri(openFileDialog1.FileNames[BoxTt.SelectedIndex - 1].ToString());
+                    BoxTt.SelectedIndex = BoxTt.SelectedIndex - 1;
+                    timer2.Stop();
+                    timer2.Start();
+                    One.Content = openFileDialog1.SafeFileNames[BoxTt.SelectedIndex];
+                }
+            }
+  
+        }
+
+        private void SliderVolume_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (e.Delta > 0)
+            {
+                if (Playerr.Volume < 0)
+                {                  
+                    Playerr.Volume = 0;
+                    return;
+                }
+                else
+                {                 
+                    Playerr.Volume += 0.025;
+                    SliderVolume.Value = Playerr.Volume*100;
+                }    
+            }    
+            else if (e.Delta < 0)
+            {
+            
+                if (Playerr.Volume > 1)
+                {
+                    Playerr.Volume = 1;
+                    return;
+                }
+                else
+                {
+                    Playerr.Volume -= 0.025;
+                    SliderVolume.Value = Playerr.Volume*100;
+                }
             }
 
         }
+
+   
     }
 }
