@@ -111,7 +111,7 @@ namespace MusicPlayer
             else
             {
                 //BoxTt.Items.Add(mas[1].);
-                BoxTt.Items.Add(openFileDialog1.FileName);
+                BoxTt.Items.Add(openFileDialog1.SafeFileName);
                 //BoxTt.ItemsSource+ = openFileDialog1.FileName;
             }
         }
