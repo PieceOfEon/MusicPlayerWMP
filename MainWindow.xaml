@@ -126,7 +126,7 @@
                 </SolidColorBrush>
             </Slider.Resources>
         </Slider>
-        <Label x:Name="LabelNameSong" Content="Label" HorizontalAlignment="Left" Margin="36,37,0,0" VerticalAlignment="Top" Width="336"/>
+        <Label x:Name="LabelNameSong" Content="Label" HorizontalAlignment="Left" Margin="36,27,0,0" VerticalAlignment="Top" Width="336" Background="#7FFFFFFF" Foreground="#FF2D1921" FontSize="16" FontFamily="Times New Roman" FontStyle="Italic" FontWeight="Bold"/>
         <Button Width="140" Height="65" x:Name="ButtonAddSong" Content="Add" HorizontalAlignment="Left" Margin="26,332,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" Click="ButtonAddSong_Click"/>
         <Button Width="140" Height="65" x:Name="ButtonDelSong" Content="Del" HorizontalAlignment="Left" Margin="196,332,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" Click="ButtonDelSong_Click"/>
         <Label Content="AnimeAmp by Eon" FontFamily="Impact" FontSize="36" Margin="418,384,100,0">

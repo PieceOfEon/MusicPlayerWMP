@@ -30,9 +30,11 @@ namespace MusicPlayer
     public partial class MainWindow : Window
     {
         
+        public List<string> path = new List<string>();
         DispatcherTimer timer = new DispatcherTimer();
         int frame = 1;
-        
+        public string[] mas=new string[2];
+        OpenFileDialog openFileDialog1 = new OpenFileDialog();
         public MainWindow()
         {
             InitializeComponent();
@@ -45,7 +47,7 @@ namespace MusicPlayer
             Playerr.MediaEnded += ButtonNext_Click;
 
              
-
+            
             
 
         }
@@ -96,14 +98,22 @@ namespace MusicPlayer
 
         private void ButtonAddSong_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "mp3 files (*.mp3)|*.mp3";
-            openFileDialog1.ShowDialog();
-            //a = openFileDialog1.SafeFileName+"\n";
-            //MessageBox.Show(a);
-            BoxTt.Items.Add(openFileDialog1.FileName);
             
-
+            openFileDialog1.Filter = "mp3 files (*.mp3)|*.mp3";
+            openFileDialog1.Multiselect = true;
+            openFileDialog1.ShowDialog();
+            
+            MessageBox.Show(openFileDialog1.SafeFileName);
+            if (openFileDialog1.FileName=="")
+            {
+                return;
+            }
+            else
+            {
+                //BoxTt.Items.Add(mas[1].);
+                BoxTt.Items.Add(openFileDialog1.FileName);
+                //BoxTt.ItemsSource+ = openFileDialog1.FileName;
+            }
         }
 
        
@@ -111,12 +121,10 @@ namespace MusicPlayer
         {
             if(BoxTt.SelectedIndex!=-1)
             {
-                Playerr.Source = new Uri(BoxTt.SelectedItem.ToString());
+                Playerr.Source = new Uri(openFileDialog1.FileName.ToString());
                 timer.Start();
-                
             }
             
-
         }
 
         private void TexBoxPlaylist_TextChanged(object sender, TextChangedEventArgs e)
@@ -147,15 +155,14 @@ namespace MusicPlayer
         {
             if (BoxTt.SelectedIndex + 1 == BoxTt.Items.Count)
             {
-                MessageBox.Show("q");
+                MessageBox.Show("next");
                 Playerr.Source = new Uri(BoxTt.Items[0].ToString());
                 BoxTt.SelectedIndex = 0;
             }
-            if (BoxTt.SelectedIndex + 1< BoxTt.Items.Count)
+            else if(BoxTt.SelectedIndex + 1< BoxTt.Items.Count)
             {
-                    Playerr.Source = new Uri(BoxTt.Items[BoxTt.SelectedIndex + 1].ToString());
+                    Playerr.Source = new Uri(openFileDialog1.FileName[i].ToString());
                     BoxTt.SelectedIndex = BoxTt.SelectedIndex + 1;
-                
             }
                 
         }
@@ -167,11 +174,19 @@ namespace MusicPlayer
 
         private void ButtonPrev_Click(object sender, RoutedEventArgs e)
         {
-            if (BoxTt.SelectedIndex - 1 >= 0)
+
+            if (BoxTt.SelectedIndex - 1 < 0)
             {
-                Playerr.Source = new Uri(BoxTt.Items[BoxTt.SelectedIndex -1].ToString());
-                BoxTt.SelectedIndex = BoxTt.SelectedIndex -1;
+                MessageBox.Show("prev");
+                Playerr.Source = new Uri(BoxTt.Items[BoxTt.Items.Count - 1].ToString());
+                BoxTt.SelectedIndex = BoxTt.Items.Count - 1;
             }
+            else if (BoxTt.SelectedIndex - 1 >= 0)
+            {
+                Playerr.Source = new Uri(BoxTt.Items[BoxTt.SelectedIndex - 1].ToString());
+                BoxTt.SelectedIndex = BoxTt.SelectedIndex - 1;
+            }
+
         }
     }
 }
