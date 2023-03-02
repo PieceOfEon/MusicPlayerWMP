@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MusicPlayer"
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="475" Width="800">
+        Title="MainWindow" Height="475" Width="800" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" MouseDown="Window_MouseDown">
 
     <Grid>
 
@@ -164,7 +164,7 @@
 
         <Button Width="140" Height="65" x:Name="ButtonAddSong" Content="Add" HorizontalAlignment="Left" Margin="26,332,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" Click="ButtonAddSong_Click"/>
         <Button Width="140" Height="65" x:Name="ButtonDelSong" Content="Del" HorizontalAlignment="Left" Margin="196,332,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" Click="ButtonDelSong_Click"/>
-        <Label Content="AnimeAmp by Eon" FontFamily="Impact" FontSize="36" Margin="418,369,100,15">
+        <Label Content="AnimeAmp by Eon" FontFamily="Impact" FontSize="36" Margin="418,374,100,10">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF1F0D08" Offset="0.7"/>
@@ -185,6 +185,8 @@
             </Rectangle.Fill>
         </Rectangle>
         <Label x:Name="One"  HorizontalAlignment="Left" Margin="43,34,0,0" VerticalAlignment="Top" Width="357" Background="{x:Null}" FontSize="20" Height="37" Foreground="#FFF7F7F7" FontFamily="Malgun Gothic"/>
+        <Button Height="27" Width="28" Content="x" HorizontalAlignment="Left" Margin="772,-5,0,0" VerticalAlignment="Top" FontFamily="Wingdings" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="24" Click="Button_Click"/>
+        <Button Height="27" Width="28" Content="0" HorizontalAlignment="Left" Margin="750,-5,0,0" VerticalAlignment="Top" FontFamily="Webdings" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="24" Click="Button_Click_1"/>
 
 
 

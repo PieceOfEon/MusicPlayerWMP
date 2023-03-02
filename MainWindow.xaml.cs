@@ -49,6 +49,7 @@ namespace MusicPlayer
 
             MouseWheel += SliderVolume_MouseWheel;
 
+            
         }
 
         public void Update(object sender, EventArgs e)
@@ -275,6 +276,21 @@ namespace MusicPlayer
 
         }
 
-   
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close(); 
+            
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                DragMove();
+        }
     }
 }
