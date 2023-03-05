@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MusicPlayer"
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="475" Width="800" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" MouseDown="Window_MouseDown">
+        Title="MainWindow" Height="475" Width="1000" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" MouseDown="Window_MouseDown">
 
     <Grid>
 
@@ -126,9 +126,9 @@
                 </SolidColorBrush>
             </Slider.Resources>
         </Slider>
-        <Canvas x:Name="Canvas" Background="Transparent" Height="25"
-                VerticalAlignment="Top">
-            <Label x:Name="LabelNameSong" Content="Место для Вашей рекламы" HorizontalAlignment="Center" VerticalAlignment="Top" Width="210" Background="#7FFFFFFF" Foreground="#FF2D1921" FontSize="16" FontFamily="Times New Roman" FontStyle="Italic" FontWeight="Bold" Canvas.Left="37" Canvas.Top="5">
+        <Canvas x:Name="Canvas" Background="Transparent" Height="24"
+                VerticalAlignment="Top" Margin="192,16,-192,0">
+            <Label x:Name="LabelNameSong" Content="Место для Вашей рекламы" HorizontalAlignment="Center" VerticalAlignment="Top" Width="210" Background="#7FFFFFFF" Foreground="#FF2D1921" FontSize="16" FontFamily="Times New Roman" FontStyle="Italic" FontWeight="Bold" Canvas.Left="37">
                 <Label.Triggers>
                     <EventTrigger RoutedEvent="Label.Loaded">
                         <EventTrigger.Actions>
@@ -164,7 +164,7 @@
 
         <Button Width="140" Height="65" x:Name="ButtonAddSong" Content="Add" HorizontalAlignment="Left" Margin="26,332,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" Click="ButtonAddSong_Click"/>
         <Button Width="140" Height="65" x:Name="ButtonDelSong" Content="Del" HorizontalAlignment="Left" Margin="196,332,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" Click="ButtonDelSong_Click"/>
-        <Label Content="AnimeAmp by Eon" FontFamily="Impact" FontSize="36" Margin="418,374,100,10">
+        <Label Content="AnimeAmp by Eon" FontFamily="Impact" FontSize="36" Margin="612,406,-94,-21">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF1F0D08" Offset="0.7"/>
@@ -172,9 +172,9 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-        <MediaElement x:Name="Playerr" HorizontalAlignment="Left" Height="100" Margin="-154,24,0,0" VerticalAlignment="Top" Width="100" />
-        <ListBox x:Name="BoxTt" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="16" FontWeight="Bold" BorderBrush="{x:Null}" Background="#7F000000" Foreground="#FFD8D8D8" Margin="418,34,100,95"/>
-        <Rectangle HorizontalAlignment="Left" Height="370" Stroke="Black" VerticalAlignment="Top" Width="1112" Margin="700,212,0,0" StrokeThickness="0">
+        <MediaElement x:Name="Playerr" HorizontalAlignment="Left" Height="100" Margin="-154,24,0,0" VerticalAlignment="Top" Width="100" LoadedBehavior="Manual" />
+        <ListBox x:Name="BoxTt" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="16" FontWeight="Bold" BorderBrush="{x:Null}" Background="#7F000000" Foreground="#FFD8D8D8" Margin="612,238,111,67" MouseDoubleClick="BoxTt_MouseDoubleClick"/>
+        <Rectangle HorizontalAlignment="Left" Height="370" Stroke="Black" VerticalAlignment="Top" Width="1112" Margin="914,225,0,0" StrokeThickness="0">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/sile.png" Stretch="None" AlignmentX="Left" AlignmentY="Top" TileMode="Tile">
                     <ImageBrush.Transform>
@@ -184,9 +184,9 @@
 
             </Rectangle.Fill>
         </Rectangle>
-        <Label x:Name="One"  HorizontalAlignment="Left" Margin="43,34,0,0" VerticalAlignment="Top" Width="357" Background="{x:Null}" FontSize="20" Height="37" Foreground="#FFF7F7F7" FontFamily="Malgun Gothic"/>
-        <Button Height="27" Width="28" Content="x" HorizontalAlignment="Left" Margin="772,-5,0,0" VerticalAlignment="Top" FontFamily="Wingdings" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="24" Click="Button_Click"/>
-        <Button Height="27" Width="28" Content="0" HorizontalAlignment="Left" Margin="750,-5,0,0" VerticalAlignment="Top" FontFamily="Webdings" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="24" Click="Button_Click_1"/>
+        <Label x:Name="One"  HorizontalAlignment="Left" Margin="43,40,0,0" VerticalAlignment="Top" Width="357" Background="{x:Null}" FontSize="20" Height="37" Foreground="#FFF7F7F7" FontFamily="Malgun Gothic"/>
+        <Button Height="28" Width="28" Content="x" HorizontalAlignment="Left" Margin="964,10,0,0" VerticalAlignment="Top" FontFamily="Wingdings" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="24" Click="Button_Click"/>
+        <Button Height="28" Width="28" Content="0" HorizontalAlignment="Left" Margin="936,10,0,0" VerticalAlignment="Top" FontFamily="Webdings" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="24" Click="Button_Click_1"/>
 
 
 
